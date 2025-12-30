@@ -8,7 +8,14 @@
 
 - 环境同步
   ```shell
+  cd rag_practice
   uv sync
+  ```
+
+- 设置env
+  ```shell
+  cd rag_practice
+  vim .env #将对应的api_key替换问自己的
   ```
 
 - 执行代码
@@ -16,7 +23,8 @@
   uv run python main.py
   ```
 
-- 效果展示
+- 效果展示  
+
   可以查看[效果展示输出日志](assets/demo.log)  
   <br>
 
@@ -31,6 +39,7 @@
 
 baseline模型：https://modelscope.cn/models/Qwen/Qwen3-0.6B  
 嵌入层：https://huggingface.co/infgrad/stella-base-zh-v3-1792d  
+api提供平台：https://modelscope.cn  
 
 ## 参考
 
