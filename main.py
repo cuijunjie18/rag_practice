@@ -112,12 +112,15 @@ if __name__ == "__main__":
     for i in range(2):
         print(f"{pdf_content[i]['page']}：{pdf_content[i]['content'][:50]}...")
         
+        
     # ================ step2: 构建检索向量库 ========================
     bm25, sent_model, pdf_embeddings, pdf_texts = build_retrieval_libraries(pdf_content)
     print(f"BM25 检索库构建完成（共{len(pdf_texts)}个片段）")
     print(f"语义向量库构建完成（向量维度：{pdf_embeddings.shape[1]}）")
     
+    
     # ================ (测试step): 结果重排 ==============================
+    
     # 选一个测试问题，先获取候选片段，再重排
     test_question = "如何打开前机舱盖？"
 
@@ -138,32 +141,33 @@ if __name__ == "__main__":
     print(f"问题：{test_question}")
     print(f"最优参考片段（{best_chunk['page']}）：{best_chunk['content']}")
     
+    
     # ================= step3: 对比实验 ===========================
     
-    # # 选择 3 个典型测试问题（来自 questions.json，索引可根据实际数据调整）
-    # test_questions = [
-    #     questions[0]["question"],  # 问题 1：操作步骤类（如“如何打开前机舱盖？”）
-    #     questions[5]["question"],  # 问题 2：页码定位类（如“儿童安全座椅固定装置在手册第几页？”）
-    #     questions[10]["question"]  # 问题 3：法规要求类（如“根据国家环保法，车辆在什么情况下需要报废？”）
-    # ]
+    # 选择 3 个典型测试问题（来自 questions.json，索引可根据实际数据调整）
+    test_questions = [
+        questions[0]["question"],  # 问题 1：操作步骤类（如“如何打开前机舱盖？”）
+        questions[5]["question"],  # 问题 2：页码定位类（如“儿童安全座椅固定装置在手册第几页？”）
+        questions[10]["question"]  # 问题 3：法规要求类（如“根据国家环保法，车辆在什么情况下需要报废？”）
+    ]
 
-    # # 运行对比实验
-    # print("="*80)
-    # print("Qwen3-0.7B 无 RAG vs 有 RAG 对比实验")
-    # print("="*80)
+    # 运行对比实验
+    print("="*80)
+    print("Qwen3-0.6B 无 RAG vs 有 RAG 对比实验")
+    print("="*80)
 
-    # for i, question in enumerate(test_questions, 1):
-    #     print(f"\n【测试问题{i}】：{question}")
-    #     print("-"*60)
+    for i, question in enumerate(test_questions, 1):
+        print(f"\n【测试问题{i}】：{question}")
+        print("-"*60)
 
-    #     # 1. 无 RAG 的生成结果
-    #     print("1. 无 RAG（仅依赖模型自身知识）：")
-    #     answer_without_rag = qwen3_without_rag(question, tokenizer, model)
-    #     print(f"   回答：{answer_without_rag}")
+        # 1. 无 RAG 的生成结果
+        print("1. 无 RAG（仅依赖模型自身知识）：")
+        answer_without_rag = qwen3_without_rag(question)
+        print(f"   回答：{answer_without_rag}")
 
-    #     # 2. 有 RAG 的生成结果
-    #     print("2. 有 RAG（基于汽车手册片段）：")
-    #     answer_with_rag, ref_page = qwen3_with_rag(question, pdf_content, bm25, sent_model, pdf_embeddings, tokenizer, model)
-    #     print(f"   回答：{answer_with_rag}")
-    #     print(f"   参考手册页码：{ref_page}")
-    #     print("-"*60)
+        # 2. 有 RAG 的生成结果
+        print("2. 有 RAG（基于汽车手册片段）：")
+        answer_with_rag, ref_page = qwen3_with_rag(question, pdf_content, bm25, sent_model, pdf_embeddings)
+        print(f"   回答：{answer_with_rag}")
+        print(f"   参考手册页码：{ref_page}")
+        print("-"*60)

@@ -1,0 +1,129 @@
+uv run python main.py                                                                                                                     ─╯
+共读取到 301 个问题
+共生成 1603 个知识库片段
+
+ 前 2 个问题示例：
+问题1：“前排座椅通风”的相关内容在第几页？
+问题2："关于车辆的儿童安全座椅固定装置，在哪一页可以找到相关内容？"
+
+ 前 2 个知识库片段示例：
+page_1：欢迎
+感谢您选择了具有优良安全性、舒适性、动力性和经济性的Lynk&Co领克汽车。
+首次使用前请仔细...
+page_1：新资料，但本公司将对产品进行不断的改进和优化，您所购的车辆可能与本手册中的描述有所不同，请以实际
+接...
+Building prefix dict from the default dictionary ...
+Loading model from cache /tmp/jieba.cache
+Loading model cost 0.377 seconds.
+Prefix dict has been built successfully.
+Some weights of BertModel were not initialized from the model checkpoint at infgrad/stella-base-zh-v3-1792d and are newly initialized: ['pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Batches: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████| 51/51 [00:25<00:00,  2.00it/s]
+BM25 检索库构建完成（共1603个片段）
+语义向量库构建完成（向量维度：1792）
+问题：如何打开前机舱盖？
+最优参考片段（page_307）：OBD-II）插座。
+4诊断系统自动读取VIN码。
+打开前机舱盖
+打开前机舱盖
+打开前机舱盖前，确保前机舱盖打开区域无障碍物。
+1 连续拉两次位于驾驶员侧仪表板左下方的前机舱盖开启拉手。
+307
+================================================================================
+Qwen3-0.6B 无 RAG vs 有 RAG 对比实验
+================================================================================
+
+【测试问题1】：“前排座椅通风”的相关内容在第几页？
+------------------------------------------------------------
+1. 无 RAG（仅依赖模型自身知识）：
+Traceback (most recent call last):
+  File "/mnt/data/workspace/RAG_Practice/main.py", line 165, in <module>
+    answer_without_rag = qwen3_without_rag(question)
+  File "/mnt/data/workspace/RAG_Practice/main.py", line 34, in qwen3_without_rag
+    response = client.chat.completions.create(
+  File "/mnt/data/workspace/RAG_Practice/.venv/lib/python3.10/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/mnt/data/workspace/RAG_Practice/.venv/lib/python3.10/site-packages/openai/resources/chat/completions/completions.py", line 1192, in create
+    return self._post(
+  File "/mnt/data/workspace/RAG_Practice/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/mnt/data/workspace/RAG_Practice/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.APIStatusError: Error code: 425 - {'errors': {'message': 'Service is waking up, please proceed with inference execution upon successful wakeup.'}, 'request_id': '4e9aa1a3-c473-4da1-81bd-dfa326f002fa'}
+
+╭─    /mnt/data/workspace/RAG_Practice  on   master !1 ··········· 1 ✘  took 48s   rag-practice   with root@cuijunjie  at 17:03:06  ─╮
+╰─ uv run python main.py                                                                                                                     ─╯
+共读取到 301 个问题
+共生成 1603 个知识库片段
+
+ 前 2 个问题示例：
+问题1：“前排座椅通风”的相关内容在第几页？
+问题2："关于车辆的儿童安全座椅固定装置，在哪一页可以找到相关内容？"
+
+ 前 2 个知识库片段示例：
+page_1：欢迎
+感谢您选择了具有优良安全性、舒适性、动力性和经济性的Lynk&Co领克汽车。
+首次使用前请仔细...
+page_1：新资料，但本公司将对产品进行不断的改进和优化，您所购的车辆可能与本手册中的描述有所不同，请以实际
+接...
+Building prefix dict from the default dictionary ...
+Loading model from cache /tmp/jieba.cache
+Loading model cost 0.381 seconds.
+Prefix dict has been built successfully.
+Some weights of BertModel were not initialized from the model checkpoint at infgrad/stella-base-zh-v3-1792d and are newly initialized: ['pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Batches: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████| 51/51 [00:25<00:00,  2.00it/s]
+BM25 检索库构建完成（共1603个片段）
+语义向量库构建完成（向量维度：1792）
+问题：如何打开前机舱盖？
+最优参考片段（page_307）：OBD-II）插座。
+4诊断系统自动读取VIN码。
+打开前机舱盖
+打开前机舱盖
+打开前机舱盖前，确保前机舱盖打开区域无障碍物。
+1 连续拉两次位于驾驶员侧仪表板左下方的前机舱盖开启拉手。
+307
+================================================================================
+Qwen3-0.6B 无 RAG vs 有 RAG 对比实验
+================================================================================
+
+【测试问题1】：“前排座椅通风”的相关内容在第几页？
+------------------------------------------------------------
+1. 无 RAG（仅依赖模型自身知识）：
+无法确定具体内容页码，建议您查阅该车型的详细手册或相关技术文档以获取准确信息。   回答：无法确定具体内容页码，建议您查阅该车型的详细手册或相关技术文档以获取准确信息。
+2. 有 RAG（基于汽车手册片段）：
+参考 page_307   回答：参考 page_307
+   参考手册页码：page_4
+------------------------------------------------------------
+
+【测试问题2】：请问Lynk&Co领克汽车的事件数据记录系统（EDR）主要记录哪些信息？
+------------------------------------------------------------
+1. 无 RAG（仅依赖模型自身知识）：
+事件数据记录系统（EDR）主要记录车辆运行时的关键信息，通常包括但不限于以下内容：  
+1. **车辆状态**：如发动机温度、电池电量、系统状态等；  
+2. **传感器数据**：如车速、方向、悬挂系统参数等；  
+3. **导航与定位**：当前位置、路线信息等；  
+4. **故障诊断**：系统运行状态、异常提示等；  
+5. **安全配置**：如刹车系统、防抱死系统等参数。  
+
+具体细节需结合车辆型号及领克官方技术资料进行确认。   回答：事件数据记录系统（EDR）主要记录车辆运行时的关键信息，通常包括但不限于以下内容：  
+1. **车辆状态**：如发动机温度、电池电量、系统状态等；  
+2. **传感器数据**：如车速、方向、悬挂系统参数等；  
+3. **导航与定位**：当前位置、路线信息等；  
+4. **故障诊断**：系统运行状态、异常提示等；  
+5. **安全配置**：如刹车系统、防抱死系统等参数。  
+
+具体细节需结合车辆型号及领克官方技术资料进行确认。
+2. 有 RAG（基于汽车手册片段）：
+结合给定的资料，无法回答问题。   回答：结合给定的资料，无法回答问题。
+   参考手册页码：page_12
+------------------------------------------------------------
+
+【测试问题3】：装载货物时，车内有哪些储物空间可以利用？
+------------------------------------------------------------
+1. 无 RAG（仅依赖模型自身知识）：
+车内常见的储物空间包括：车门两侧的储物篮（如侧门内侧储物篮）、车顶上的储物架（用于放置工具或小物件）、后备箱（最大储物空间）。具体布局因车型而异，建议根据实际车辆配置选择合适的位置和方式存放货物。   回答：车内常见的储物空间包括：车门两侧的储物篮（如侧门内侧储物篮）、车顶上的储物架（用于放置工具或小物件）、后备箱（最大储物空间）。具体布局因车型而异，建议根据实际车辆配置选择合适的位置和方式存放货物。
+2. 有 RAG（基于汽车手册片段）：
+结合给定的资料，无法回答问题。   回答：结合给定的资料，无法回答问题。
+   参考手册页码：page_26
+------------------------------------------------------------
